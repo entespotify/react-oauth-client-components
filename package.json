@@ -1,26 +1,46 @@
 {
-  "name": "@entespotify/react-oauth-client-components",
-  "version": "0.0.1",
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "type": "module",
-  "license": "MIT",
-  "author": "ankit",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "tsup",
-    "clean": "rimraf dist"
-  },
-  "devDependencies": {
-    "@types/react": "^19.2.2",
-    "rimraf": "^5.0.0",
-    "tsup": "^6.6.0",
-    "typescript": "^5.5.0"
-  },
-  "peerDependencies": {
-    "react": "^18.0.0"
-  }
+	"name": "@entespotify/react-oauth-client-components",
+	"version": "0.0.1",
+	"main": "dist/index.cjs",
+	"module": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"type": "module",
+	"license": "MIT",
+	"author": "ankit",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsup",
+		"clean": "rimraf dist"
+	},
+	"devDependencies": {
+		"@types/react": "^19.2.2",
+		"rimraf": "^5.0.0",
+		"tsup": "^6.6.0",
+		"typescript": "^5.5.0"
+	},
+	"peerDependencies": {
+		"react": "^18.0.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"description": "A React library for simplifying OAuth2 authentication with PKCE support.",
+	"keywords": [
+		"react",
+		"oauth2",
+		"authentication",
+		"pkce",
+		"typescript",
+		"oauth-client"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/entespotify/react-oauth-client-components.git"
+	},
+	"bugs": {
+		"url": "https://github.com/entespotify/react-oauth-client-components/issues"
+	},
+	"homepage": "https://github.com/entespotify/react-oauth-client-components#readme"
 }
