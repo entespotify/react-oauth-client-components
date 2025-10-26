@@ -6,6 +6,7 @@ const TOKEN_KEY = '__auth_token';
 
 export class AuthService {
   private config: AuthConfig;
+  private cachedToken: TokenResponse | null = null;
 
   constructor(config: AuthConfig) {
     this.config = config;
@@ -61,6 +62,9 @@ export class AuthService {
     const storage = this.config.storage === 'sessionStorage' ? sessionStorage : localStorage;
     storage.setItem(TOKEN_KEY, JSON.stringify(data));
 
+    // caching the token for quick access
+    this.cachedToken = data;
+
     // clean url
     const url = new URL(window.location.href);
     url.search = '';
@@ -72,7 +76,14 @@ export class AuthService {
   getToken(): TokenResponse | null {
     const storage = this.config.storage === 'sessionStorage' ? sessionStorage : localStorage;
     const raw = storage.getItem(TOKEN_KEY);
-    return raw ? JSON.parse(raw) as TokenResponse : null;
+    if (raw) {
+      // found a stored token, clear cached
+      this.cachedToken = null;
+      return JSON.parse(raw) as TokenResponse;
+    }
+
+    // fallback to cached if not found in storage
+    return this.cachedToken;
   }
 
   async refreshTokenIfNeeded(): Promise<TokenResponse | null> {
