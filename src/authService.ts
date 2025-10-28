@@ -6,7 +6,6 @@ const TOKEN_KEY = '__auth_token';
 
 export class AuthService {
   private config: AuthConfig;
-  private cachedToken: TokenResponse | null = null;
 
   constructor(config: AuthConfig) {
     this.config = config;
@@ -62,8 +61,9 @@ export class AuthService {
     const storage = this.config.storage === 'sessionStorage' ? sessionStorage : localStorage;
     storage.setItem(TOKEN_KEY, JSON.stringify(data));
 
-    // caching the token for quick access
-    this.cachedToken = data;
+    if(!storage.getItem(TOKEN_KEY)) {
+      console.warn("BUG REPORT: The token set to staorage is not available yet, this is due to a race condition when browser commits the changes to storage.")
+    }
 
     // clean url
     const url = new URL(window.location.href);
@@ -77,13 +77,9 @@ export class AuthService {
     const storage = this.config.storage === 'sessionStorage' ? sessionStorage : localStorage;
     const raw = storage.getItem(TOKEN_KEY);
     if (raw) {
-      // found a stored token, clear cached
-      this.cachedToken = null;
       return JSON.parse(raw) as TokenResponse;
     }
-
-    // fallback to cached if not found in storage
-    return this.cachedToken;
+    return null;
   }
 
   async refreshTokenIfNeeded(): Promise<TokenResponse | null> {
