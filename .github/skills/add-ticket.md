@@ -24,8 +24,8 @@ user-invocable: true
 #### Step 1: Define Ticket Type and Scope
 - Identify ticket type: `bug`, `feature`, or `task` (dedicated issue-type field, separate from labels)
 - Determine scope: affected service(s) or `both` if multiple services are touched
-- Assess complexity to determine size (S/M/L/XL)
-- Set separate effort estimate (e.g., 2h, 8h, 3d)
+- Assess complexity briefly (optional; sizing and effort estimates are **ignored** per current user instruction)
+- Ignore sizing/effort fields; do not include `size/*` labels or time estimates
 - Check if this ticket references or depends on any existing tickets
 
 #### Step 2: Gather Required Information
@@ -175,8 +175,9 @@ Before considering a ticket "ready to work", verify:
 - [ ] Acceptance Criteria are present and testable
 - [ ] At least one service label is applied
 - [ ] Issue type is set to `bug`, `feature`, or `task` (separate from labels)
-- [ ] Size label applied (`size/S`, `size/M`, `size/L`, `size/XL`)
-- [ ] Separate effort estimate set (`2h`, `4h`, `1d`, etc.)
+- [ ] Issue type is set (`bug`, `feature`, `task`) via `--type` (not label)
+- [ ] Size label applied (`size/S`, `size/M`, `size/L`, `size/XL`) — **ignored per user instruction; do not use**
+- [ ] Separate effort estimate set (`2h`, `4h`, `1d`, etc.) — **ignored per user instruction; do not use**
 - [ ] Type label (feature/bug/task) is distinct from service/complexity labels
 - [ ] Exactly one size label is applied
 - [ ] All references to other tickets use `#<number>` format
