@@ -1,8 +1,8 @@
 react-oauth-client-components (TypeScript)
 ========================
 
-**⚠️ Beta Version**  
-This library is currently in beta. Use it with caution and report any issues you encounter.
+**v2.0.0 — Logic-Only**  
+This library is now stripped to core OAuth2 / PKCE logic (`AuthProvider`, `AuthService`, `useAuth`, `generatePKCE`, `types`). MUI components (`LoginPage`, `CallbackPage`) and Storybook artifacts have been removed; UI belongs to the consuming app.
 
 ## Overview
 `@entespotify/react-oauth-client-components` is a React library that simplifies the implementation of OAuth2 authentication in your React applications. It provides components and utilities to handle login, token management, and PKCE (Proof Key for Code Exchange).
@@ -24,9 +24,9 @@ npm install react
 ### 1. Import Components
 The library exports the following components and utilities:
 - `AuthProvider`
-- `LoginPage`
-- `CallbackPage`
 - `AuthService`
+- `useAuth`
+- `generatePKCE`
 
 ### 2. Configure the `AuthProvider`
 Wrap your application with the `AuthProvider` and provide the necessary configuration:
@@ -55,35 +55,7 @@ function App() {
 export default App;
 ```
 
-### 3. Add a Login Page
-Use the `LoginPage` component to provide a login interface:
-
-```tsx
-import React from 'react';
-import { LoginPage } from '@entespotify/react-oauth-client-components';
-
-function Login() {
-  return <LoginPage label="Sign in with OAuth" />;
-}
-
-export default Login;
-```
-
-### 4. Handle the Callback
-Use the `CallbackPage` component to handle the OAuth2 redirect callback:
-
-```tsx
-import React from 'react';
-import { CallbackPage } from '@entespotify/react-oauth-client-components';
-
-function Callback() {
-  return <CallbackPage onSuccessRedirect="/" />;
-}
-
-export default Callback;
-```
-
-### 5. Access Authentication State
+### 3. Access Authentication State
 Use the `useAuth` hook to access authentication state and methods:
 
 ```tsx
