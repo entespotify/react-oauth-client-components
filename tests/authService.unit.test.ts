@@ -77,7 +77,7 @@ describe('AuthService unit tests — v2.0.0 logic-only (#13)', () => {
       } as Response);
 
       await service.refreshTokenIfNeeded();
-      const [url] = (globalThis.fetch as any).mock.calls.at(-1);
+      const [_url] = (globalThis.fetch as any).mock.calls.at(-1);
       // The fetch call body contains the form-encoded params; assert via URL string inspection isn't direct here,
       // so rely on service logic not throwing — full request-body assertion requires deeper interception.
       expect(globalThis.fetch).toHaveBeenCalled();
